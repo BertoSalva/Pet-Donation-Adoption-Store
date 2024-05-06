@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "PostPet";
+}
+
+<style>
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: green 2px solid;
+        border-radius: 5px;
+        margin: 50px 300px 50px 300px;
+        padding: 20px;
+          }
+</style>
+<div class="center">
+    @using (Html.BeginForm("PostPet", "Home", FormMethod.Post, new {enctype = "multipart/form-data"}))
+    {
+        <div class="container">
+            <H3 style="color:green">Private Learner</H3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="classId" class="form-control" placeholder="User Name" type="text">
+                    </div>
+                    <br />
+                    <!-- form-group// -->
+
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <input name="grade" class="form-control" placeholder=" Phone Number " type="text">
+                    </div>
+                    <!-- form-group// -->
+                    <br />
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-shopping-bag" aria-hidden="true"></i></span>
+                        </div>
+                        <input name="hours" class="form-control" placeholder="Pet's Name'" type="text">
+                    </div>
+
+                    <!-- form-group// -->
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-clone" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <select class="form-control" name="stateOffer">
+                            <option value="None">Pet Type</option>
+                            <option value="After Care">After Care</option>
+                            <option value="Boot Camp">Boot Camp</option>
+                            <option value="Summer School">Summer School</option>
+                        </select>
+                    </div>
+                    <br />
+
+                    <!-- form-group end.// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-th" aria-hidden="true"></i> </span>
+                        </div>
+                        <input class="form-control" placeholder="Breed" type="text" name="mentors">
+                    </div>
+                    <br />
+
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <select class="form-control" name="levelEd">
+                            <option value="None">Location</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+
+
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <select class="form-control" name="levelEd">
+                            <option value="None">Age</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <select class="form-control" name="levelEd">
+                        <option value="None">Weight </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+
+                <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <select class="form-control" name="levelEd">
+                        <option value="None">Gender</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+               
+                </div>
+
+                <div>
+                    <input type="file" name="ImageFile" required >
+                </div>
+
+
+            </div>
+            <input type="submit" class="btn btn-success" value="Submit" />
+        </div>
+    }
+
+
+
+</div>
+

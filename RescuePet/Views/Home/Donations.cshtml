@@ -1,0 +1,118 @@
+﻿@model RescuePet.Models.DBEntities.Userz
+@{
+    ViewBag.Title = "Donations";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<html>
+<head>
+    <!-- Other head content -->
+    <style>
+        /* CSS rules for the progress bar */
+        .custom-progress {
+            width: 100%;
+            height: 20px;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+        }
+
+            /* Styling for the progress bar fill (Webkit browsers) */
+            .custom-progress::-webkit-progress-value {
+                background-color: #3498db;
+                border-radius: 10px;
+            }
+
+            /* Styling for the progress bar fill (Firefox) */
+            .custom-progress::-moz-progress-bar {
+                background-color: #3498db;
+                border-radius: 10px;
+            }
+    </style>
+</head>
+
+
+
+
+
+<section>
+
+    <h1>Donate Now!!</h1>
+    <h2>And Help us Reach R50 000</h2>
+
+    <p>
+        Where does donated money go?
+        Your donation will not only directly benefit the animals in our Tshwane area but – through a sharing agreement between all SPCAs Nationwide – a portion will be used in other, less fortunate areas to benefit animals over a wider area.
+    </p>
+</section>
+@using (Html.BeginForm("Donations", "Home", FormMethod.Post))
+{
+
+    @*<label>Full Name</label>
+        <br />
+        @Html.TextBox("fullname", null, new { @class = "form-control", @type = "number" });
+        <label>Phone Number</label>
+        <br />
+        @Html.TextBox("phonenumber", null, new { @class = "form-control", @type = "text" });
+        <label>Donation</label>
+
+        <br />
+        @Html.TextBox("donation", null, new { @class = "form-control", @type = "text" });
+        <br />*@
+
+    <label for="fullname">Full Name</label>
+    <br />
+    @Html.TextBox("fullname", null, new { @class = "form-control", @type = "text" });
+    <br />
+
+    <label for="phonenumber">Phone Number</label>
+    <br />
+    @Html.TextBox("phonenumber", null, new { @class = "form-control", @type = "text" });
+    <br />
+
+    <label for="donation">Donation</label>
+    <br />
+    @Html.TextBox("donation", null, new { @class = "form-control", @type = "number", id = "donationInput" });
+    <br />
+
+
+
+
+    <button type="submit">Save Donor</button>
+}
+@if (Model != null)
+{
+
+    <progress id="donationProgress" style="width: 100%; height: 20px; border-radius: 10px; background-color: #f0f0f0;"
+              value="@Model.DonationAmount" max="50000">Target is R50 000</progress>
+
+    <!-- Percentage label (can be styled as needed) -->
+    <div id="percentageLabel" style="text-align: center; color: #3498db;"></div>
+
+    <!-- Button to trigger progress update -->
+    <button onclick="updateProgress()">Make Another Donation</button>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    // Initialize a variable to store the progress
+    let currentProgress = parseFloat(document.getElementById('donationInput').value) || 0;
+    // Function to update the progress
+    function updateProgress() {
+        currentProgress += parseFloat(document.getElementById('donationInput').value) || 0; // Increment by 1000 (adjust as needed)
+        if (currentProgress > 50000) {
+            currentProgress = 50000; // Cap the progress at the maximum value
+        }
+
+        // Update the progress bar
+        document.getElementById('donationProgress').value = currentProgress;
+
+        // Update the percentage label
+        document.getElementById('percentageLabel').textContent = `${((currentProgress / 50000) * 100).toFixed(2)}%`;
+    }
+</script>
+</html>

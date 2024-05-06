@@ -1,0 +1,61 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 75px;
+}
+
+/* You can also target images with a specific class or ID and apply custom styles */
+
+
+#logo {
+    width: 75px; /* Set width for an image with ID "logo" */
+    height: auto; /* Maintain aspect ratio */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Style for table headers */
+th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style for alternating rows */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style for table cells */
+td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+ 
+
+
+

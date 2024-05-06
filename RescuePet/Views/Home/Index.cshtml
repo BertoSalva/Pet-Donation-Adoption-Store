@@ -1,0 +1,63 @@
+﻿@*@model RescuePet.Models.DBEntities.Pet*@
+
+@model List<RescuePet.Models.DBEntities.Pet>
+@{
+    ViewBag.Title = "Home Page";
+    <strong>@ViewBag.Message</strong>
+}
+
+<main>
+
+
+    <section class="col-md-4" aria-labelledby="librariesTitle">
+        <img src="@Url.Content("~/Image/PetHome.jpeg")" alt="Pet Image" style="max-width: 400px; height: 400px;" />
+    </section>
+
+    <section class="col-md-4" aria-labelledby="librariesTitle">
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="btn btn-outline-dark">@Html.ActionLink("View Our Pets", "Pets", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h1 style="font-family: 'Arial', sans-serif; font-size: 36px; font-weight: bold;">Welcome to the Pet Rescue and Adoption Centre</h1>
+        <p style="font-family: 'Verdana', sans-serif; font-size: 16px; line-height: 1.5;">
+            As an animal welfare organization, we acknowledge all animals as sentient beings and strive to prevent their cruelty and exploitation. We aim to achieve this by proactively promoting animal welfare, enforcing animal protection legislation, and prosecuting offenders.
+
+            Our mission is to maintain a high profile within the community through visibility and interaction. We strive to do so by deploying competent personnel who project enthusiasm and commitment, supported by education and community outreach programs.
+        </p>
+    </section>
+
+    <section>
+        @{
+            if (Model != null)
+            {
+                <table class="table table-bordered table-striped" style="font-family: 'Arial', sans-serif; font-size: 14px;">
+                    <thead>
+                        <tr>
+                            <th colspan="8" style="font-weight: bold;">Pets who we have looked after: @Model.Count</th>
+                        </tr>
+                        <tr>
+                          
+                            <th colspan="8" style="font-weight: bold;">Pets homed: @Model.Count(pet => pet.adoptionStatus == "Adopted")</th>
+                        </tr>
+                    </thead>
+                    @foreach (var pet in Model)
+                    {
+                        if (pet.adoptionStatus == "Adopted")
+                        {
+                            <tr>
+                                <td>
+                                    <span style="font-weight: bold; color: #3498db;">@pet.Name</span> is adopted by <span style="color: #555;">@pet.User</span>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </table>
+            }
+        }
+    </section>
+</main>

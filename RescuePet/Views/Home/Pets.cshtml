@@ -1,0 +1,156 @@
+﻿@using RescuePet.Models.DBEntities
+
+@model FiltersVM
+@{
+    ViewBag.Title = "Pets";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<h2>Pets</h2>
+
+
+@using (Html.BeginForm("Search", "Home", FormMethod.Post, new { @class = "form-inline" }))
+{
+    <form class="form-inline">
+        <div class="form-group">
+          <select class="form-control" name="type">
+              <option value="0">Select a Type</option>
+
+              @foreach (var opt in Model.Types)
+              {
+                  {
+
+                      <option value="@opt.TypeName">@opt.TypeName</option>
+                  }
+              }
+          </select>
+        <div class="form-group">
+            <select class="form-control" name="location">
+                <option value="0">Select a Location</option>
+
+                @foreach (var opt in Model.Locations)
+                {
+                    {
+
+                        <option value="@opt.LocationID">@opt.LocationName</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <select class="form-control" name="breed">
+                <option value="0">Select a Breed</option>
+                @foreach (var opt in Model.Breeds)
+                {
+                    <option value="@opt.BreedID">@opt.BreedName </option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Search" style="width:150px" class="btn btn-success form-control" />
+        </div>
+
+        <div class="form-group">
+
+            @Html.ActionLink("Clear", "Pets", "Home", new { }, new { @class = "btn btn-danger form-control", @style = "width:150px" })
+        </div>
+
+
+    </form>
+}
+
+<br />
+
+
+
+
+@if (Model.Petz != null)
+{
+    <table class="table table-bordered table-striped">
+        @foreach (var item in Model.Petz)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.adoptionStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Story)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostedBy)
+                </td>
+                <td>
+                    @*<img src="@Url.Content("~/Image/" +item.Img)" alt="Pet Image" />*@
+                    <img src="@Url.Content("~/Image/" + item.Img)" alt="Pet Image" onerror="this.src='@Url.Content(item.Img)'" />
+                </td>
+
+                <td>
+                    @Html.ActionLink("Adopt", "Update", new { id = item.petId })
+                </td>
+
+                <td>
+                    <a asp-controller="ClubList" asp-action="Update"
+                       asp-route-id="@item.petId">Edit</a>
+                    @*<a asp-controller="ClubList" asp-action="DeleteDbn"
+                       asp-route-id="@captownians.CapetownId">Delete</a>*@
+                </td>
+
+            </tr>
+        }
+
+    </table>
+}
+else if (Model.Pets != null)
+{
+    <table class="table table-bordered table-striped">
+        @foreach (var item in Model.Pets)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.adoptionStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Story)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostedBy)
+                </td>
+                <td>
+                    @*<img src="@Url.Content("~/Image/" +item.Img)" alt="Pet Image" />*@
+                    <img src="@Url.Content("~/Image/" + item.Img)" alt="Pet Image" onerror="this.src='@Url.Content(item.Img)'" />
+                </td>
+
+                <td>
+                    @Html.ActionLink("Adopt", "Update", new { id = item.petId })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h1>Search for pet Availability based on Criteria of your choice</h1>
+}
+
+
+
+

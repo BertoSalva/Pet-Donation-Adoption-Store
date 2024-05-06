@@ -1,0 +1,65 @@
+﻿@*@model RescuePet.Models.DBEntities.FiltersVM*@
+@model List<RescuePet.Models.DBEntities.Pet>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update</title>
+</head>
+
+@using (Html.BeginForm("Adopt", "Home", FormMethod.Post))
+{
+    <table class="table table-bordered table-striped">
+        @foreach (var item in Model)
+        {
+            if (ViewBag.ID == item.petId)
+            {
+                <div class="card">
+                    <div class="card-header">
+                        <h1>Hi my Name is @item.Name</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="@Url.Content("~/Image/" + item.Img)" alt="Pet Image" onerror="this.src='@Url.Content(item.Img)'" class="pet-image" />
+                            </div>
+                            <div class="col-md-6">
+                                <p class="pet-details">
+                                    <strong>Weight:</strong> @item.Weight<br />
+                                    <strong>Gender:</strong> @item.Gender<br />
+                                    <strong>Story:</strong> @item.Story<br />
+                                    <strong>Posted By:</strong> @item.PostedBy<br />
+                                    <strong>Location:</strong> @item.Location<br />
+                                    <strong>Age:</strong> @item.Age<br />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div style="display: flex; justify-content: space-between;">
+
+                    <!-- Column 1 -->
+                    <div style="flex: 1; margin-right: 10px;">
+                        <label for="fullname">Full Name</label>
+                        @Html.TextBox("fullname", null, new { @class = "form-control", @type = "text" })
+
+                        <label for="phonenumber">Phone Number</label>
+                        @Html.TextBox("phonenumber", null, new { @class = "form-control", @type = "text" })
+
+                        <input type="hidden" name="id" value="@ViewBag.ID">
+
+                    </div>
+                </div>
+            }
+        }
+    </table>
+    <input type="submit" class="btn btn-success" value="Adopt" />
+}

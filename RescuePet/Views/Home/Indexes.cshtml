@@ -1,0 +1,68 @@
+﻿@*@model RescuePet.Models.DBEntities.Pet*@
+
+@model List<RescuePet.Models.DBEntities.Pet>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    </section>
+
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+            <h2 id="gettingStartedTitle">Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+        </section>
+    </div>
+        <section class="col-md-4" aria-labelledby="librariesTitle">
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+
+                    <li class="btn btn-outline-dark">@Html.ActionLink("View Pets", "Pets", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <progress value="80" max="100"></progress>
+                </ul>
+            </div>
+        </section>
+
+        @{
+
+
+            if (Model != null)
+            {
+
+
+                <table class="table table-bordered table-striped">
+
+                    <thead>
+                        <tr>
+                            <th colspan="8">Pets homed @Model.Count </th>
+                        </tr>
+                        
+                    </thead>
+                   
+                        <!-- Move the <tbody> element here -->
+                        @foreach (var pet in Model)
+                        {
+
+                        <td>
+                            @pet.Name is adopted by @pet.Location
+                        </td>
+                       }
+                       <!-- Close the <tbody> element here -->
+                    </table>
+
+      
+                }
+        }
+
+</main>
